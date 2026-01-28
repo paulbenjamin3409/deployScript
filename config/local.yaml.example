@@ -1,0 +1,14 @@
+# Local config for deployments (do not commit secrets)
+resource_group: appsvc_win95_nowhere_basic
+web_app_name: webapp_name_here
+location: lcaotion_middle_of_nowhere
+sku: Z00
+runtime: NODE:20-lts
+dist_dir: dist
+quick_check: false
+check_timeout_sec: 15
+provider: azure
+workflow: null
+iac_tool: null
+validations: []
+policy_checks: []
