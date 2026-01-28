@@ -1,5 +1,5 @@
 # appServiceDeployScript
-Platform engineering toolkit for deploying web apps to Azure App Service.
+Platform engineering toolkit for deploying web apps to various providers
 
 ## Usage
 
@@ -31,3 +31,4 @@ pip install -r requirements.txt
 
 ## Todo
 - get aws setup
+- get azure functions setup
