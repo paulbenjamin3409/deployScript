@@ -193,10 +193,14 @@ class AzureAppServiceProvider(CloudProvider):
 
     def copy_web_config(self) -> None:
         info("Copying web.config to dist folder...")
+        runtime = (self.config.runtime or "").strip()
         source = os.path.join(self.workspace_root, "web.config")
         dest_dir = os.path.join(self.workspace_root, self.config.dist_dir)
         dest = os.path.join(dest_dir, "web.config")
         if not os.path.exists(source):
+            if ":" in runtime:
+                info("web.config not required for Linux runtime; skipping copy.")
+                return
             error("web.config not found in project root")
             raise RuntimeError("web.config missing")
         if not os.path.exists(dest_dir):

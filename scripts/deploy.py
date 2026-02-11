@@ -2,6 +2,11 @@ import argparse
 import sys
 from pathlib import Path
 
+# Allow running this script directly without installing the package.
+REPO_ROOT = Path(__file__).resolve().parents[1]
+if str(REPO_ROOT) not in sys.path:
+    sys.path.insert(0, str(REPO_ROOT))
+
 from cloud.core.console import error, info
 from cloud.core.config import load_yaml_config
 from cloud.core.models import DeploymentConfig, WorkflowContext

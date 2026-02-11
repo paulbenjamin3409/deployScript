@@ -34,6 +34,11 @@ class WebConfigValidator:
     name = "web.config.present"
 
     def validate(self, context: WorkflowContext) -> ValidationResult:
+        runtime = (context.config.runtime or "").strip()
+        # Linux runtimes use ':' (e.g., NODE:20-lts) and do not require web.config.
+        if ":" in runtime:
+            return ValidationResult(self.name, True, "web.config not required for Linux runtime.")
+
         web_config = Path(context.workspace_root) / "web.config"
         if web_config.exists():
             return ValidationResult(self.name, True, "web.config found.")
