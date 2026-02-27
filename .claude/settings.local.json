@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell -Command \"Get-ChildItem ''C:\\\\Development\\\\beerPlanner'' | Format-Table Name, Mode, LastWriteTime\")",
+      "Bash(git mv cloud/workflows/aws_beerplanner.py cloud/workflows/aws_website.py)"
+    ]
+  }
+}

@@ -30,6 +30,20 @@ class NodeBuildToolsValidator:
         return ValidationResult(self.name, False, "Neither yarn nor npm found on PATH.")
 
 
+class AwsCliValidator:
+    name = "aws.cli.available"
+
+    def validate(self, context: WorkflowContext) -> ValidationResult:
+        aws = shutil.which("aws") or shutil.which("aws.cmd")
+        if not aws:
+            return ValidationResult(
+                self.name,
+                False,
+                "AWS CLI not found on PATH. Install from https://aws.amazon.com/cli/",
+            )
+        return ValidationResult(self.name, True, f"AWS CLI found at {aws}.")
+
+
 class WebConfigValidator:
     name = "web.config.present"
 

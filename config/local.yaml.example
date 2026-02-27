@@ -1,12 +1,29 @@
 # Local config for deployments (do not commit secrets)
+# Set provider to "azure" or "aws" to select the deployment target.
+
+# --- Azure App Service --------------------------------------------------------
 resource_group: appsvc_win95_nowhere_basic
 web_app_name: webapp_name_here
-location: lcaotion_middle_of_nowhere
+location: location_here
 sku: Z00
 runtime: NODE:20-lts
 dist_dir: dist
 quick_check: false
 check_timeout_sec: 15
+
+# --- AWS (S3 + CloudFront SPA + Lambda API) -----------------------------------
+# All three resources must exist before running. The script will error with
+# creation instructions if any are missing.
+aws_region: us-east-1
+aws_profile: AdministratorAccess-123456789012   # Named AWS profile (run: aws configure list-profiles)
+s3_bucket: your-spa-bucket-name
+cloudfront_distribution_id: EXXXXXXXXXXXXX
+lambda_function_name: beerplanner-api
+api_gateway_url: https://<api-id>.execute-api.us-east-1.amazonaws.com/   # HTTP API invoke URL (used for post-deploy verification)
+secrets_manager_secret_name: beerplanner/geoapify
+cors_origin: https://dxxxxxxxxxxxxx.cloudfront.net
+
+# --- Shared -------------------------------------------------------------------
 provider: azure
 workflow: null
 iac_tool: null

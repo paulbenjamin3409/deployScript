@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(powershell -NoProfile -Command \"& {\n$oac = aws --profile AdministratorAccess-990530464313 cloudfront create-origin-access-control --origin-access-control-config ''{\"\"Name\"\":\"\"beerplanner-s3-oac\"\",\"\"Description\"\":\"\"OAC for beerplanner-frontend-prod\"\",\"\"SigningProtocol\"\":\"\"sigv4\"\",\"\"SigningBehavior\"\":\"\"always\"\",\"\"OriginAccessControlOriginType\"\":\"\"s3\"\"}'' | ConvertFrom-Json\n$oacId = $oac.OriginAccessControl.Id\nWrite-Host ''Created OAC:'' $oacId\n}\")",
+      "Bash(powershell -ExecutionPolicy Bypass -File \"c:\\\\Users\\\\paulb\\\\source\\\\repos\\\\paulbenjamin3409\\\\deployScript\\\\fix_cloudfront.ps1\":*)"
+    ]
+  }
+}
